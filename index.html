@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+    <h1>The Psychic Game</h1>
+    <br>
+    <p>Guess what letter I'm thinking of:</p>
+    <div id="randomLetter">___</div>
+
+
+    <hr>
+    <div id="guesses">?</div>
+    <br>
+    <br>
+    <P>Win:
+        <div id="win-score">0</div>
+    </P>
+    <br>
+    <p>Lose:
+        <div id="lose-score">0</div>
+    </p>
+    <br>
+    <p>Lives:
+        <div id="lives-amount">10</div>
+    </p>
+
+
+</body>
+
+<script type="text/javascript">
+
+    var winScore = 0;
+    var loseScore = 0;
+    var livesAmount = 15;
+
+
+    var computerArray = 'abcdefghijklmnopqrstuvwxyz';
+    var computerChoices = computerArray.split("");
+
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    console.log(computerGuess);
+
+    for (var i = 0; i < computerChoices.length; i++) {
+        console.log(computerChoices[i]);
+    }
+
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+    console.log(computerGuess);
+
+    document.onkeyup = function (event) {
+        var playerChoice = (event.key);
+        document.getElementById("guesses").textContent = playerChoice;
+
+        if (playerChoice == computerGuess) {
+            alert("You win!");
+            winScore++;
+        }
+
+        else {
+            livesAmount--;
+        }
+
+        if (livesAmount == 0) {
+            alert("You lose!");
+            loseScore++;
+            livesAmount = 15;
+
+        }
+
+        if (winScore == 3 || loseScore == 3) {
+            winScore = 0;
+            loseScore = 0;
+            var playconfirm = confirm("Play again?");
+            if (playconfirm == true) {
+                alert("Let's go!");
+            }
+
+            else {
+                alert("Be that way");
+                document.write("");
+                return;
+            }
+        }
+
+
+        document.getElementById("win-score").textContent = winScore;
+        document.getElementById("lose-score").textContent = loseScore;
+        document.getElementById("lives-amount").textContent = livesAmount;
+
+    }
+
+
+
+
+</script>
+
+</html>
