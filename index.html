@@ -16,10 +16,11 @@
     <h1>The Psychic Game</h1>
     <br>
     <p>Guess what letter I'm thinking of:</p>
-    <div id="randomLetter">___</div>
+    <div id="random-letter">___</div>
 
-
+    <br>
     <hr>
+
     <div id="guesses">?</div>
     <br>
     <br>
@@ -32,7 +33,7 @@
     </p>
     <br>
     <p>Lives:
-        <div id="lives-amount">10</div>
+        <div id="lives-amount">15</div>
     </p>
 
 
@@ -44,18 +45,17 @@
     var loseScore = 0;
     var livesAmount = 15;
 
-
     var computerArray = 'abcdefghijklmnopqrstuvwxyz';
     var computerChoices = computerArray.split("");
 
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     console.log(computerGuess);
 
+
     for (var i = 0; i < computerChoices.length; i++) {
         console.log(computerChoices[i]);
-    }
 
-    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    }
 
     console.log(computerGuess);
 
@@ -66,10 +66,12 @@
         if (playerChoice == computerGuess) {
             alert("You win!");
             winScore++;
+
         }
 
         else {
             livesAmount--;
+
         }
 
         if (livesAmount == 0) {
@@ -79,12 +81,13 @@
 
         }
 
-        if (winScore == 3 || loseScore == 3) {
+        if (winScore == 1 || loseScore == 3) {
             winScore = 0;
             loseScore = 0;
             var playconfirm = confirm("Play again?");
             if (playconfirm == true) {
                 alert("Let's go!");
+                location.reload();
             }
 
             else {
@@ -98,6 +101,8 @@
         document.getElementById("win-score").textContent = winScore;
         document.getElementById("lose-score").textContent = loseScore;
         document.getElementById("lives-amount").textContent = livesAmount;
+
+
 
     }
 
